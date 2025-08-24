@@ -20,7 +20,9 @@ jobs:
         run: |
           cd C:\Users\freel\SampleDemo
           git pull origin dev
+        shell: cmd
       - name: Run script
         run: |
           cd C:\Users\freel\SampleDemo
           python run.py
+        shell: cmd

@@ -8,19 +8,21 @@ on:
 
 jobs:
   run-script:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+      # - name: Set up Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.x'
       - name: Pull latest code
         run: |
           cd C:\Users\freel\SampleDemo
           git pull origin dev
+        shell: cmd
       - name: Run script
         run: |
           cd C:\Users\freel\SampleDemo
-          python run.py
+          C:\Users\freel\AppData\Local\Microsoft\WindowsApps\python.exe run.py
+        shell: cmd

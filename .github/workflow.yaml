@@ -1,0 +1,26 @@
+
+name: Run Script on Dev Push
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  run-script:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Pull latest code
+        run: |
+          cd C:\Users\freel\SampleDemo
+          git pull origin dev
+      - name: Run script
+        run: |
+          cd C:\Users\freel\SampleDemo
+          python run.py

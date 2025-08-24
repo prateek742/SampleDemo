@@ -1,14 +1,16 @@
 
 name: Run Script on Dev Push
 
+
 on:
-  push:
+  pull_request:
     branches:
-      - dev
+      - main
 
 jobs:
   run-script:
     runs-on: self-hosted
+    # dirTest is now a GitHub repository variable, not defined here
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,13 +18,18 @@ jobs:
       #   uses: actions/setup-python@v5
       #   with:
       #     python-version: '3.x'
+      - name: Print RPA_TEST secret
+        run: echo RPA_TEST=%RPA_TEST%
+        shell: cmd
+        env:
+          RPA_TEST: ${{ secrets.RPA_TEST }}
       - name: Pull latest code
         run: |
-          cd C:\Users\freel\SampleDemo
+          cd ${{ vars.dirTest }}
           git pull origin dev
         shell: cmd
       - name: Run script
         run: |
-          cd C:\Users\freel\SampleDemo
-          C:\Users\freel\AppData\Local\Microsoft\WindowsApps\python.exe run.py
+          cd ${{ vars.dirTest }}
+          python run.py
         shell: cmd

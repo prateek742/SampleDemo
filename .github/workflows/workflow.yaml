@@ -10,6 +10,7 @@ on:
 jobs:
   run-script:
     runs-on: self-hosted
+    # dirTest is now a GitHub repository variable, not defined here
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,11 +20,11 @@ jobs:
       #     python-version: '3.x'
       - name: Pull latest code
         run: |
-          cd C:\Users\freel\SampleDemo
+          cd ${{ vars.dirTest }}
           git pull origin dev
         shell: cmd
       - name: Run script
         run: |
-          cd C:\Users\freel\SampleDemo
+          cd ${{ vars.dirTest }}
           C:\Users\freel\AppData\Local\Microsoft\WindowsApps\python.exe run.py
         shell: cmd

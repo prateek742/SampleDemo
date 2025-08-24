@@ -18,6 +18,11 @@ jobs:
       #   uses: actions/setup-python@v5
       #   with:
       #     python-version: '3.x'
+      - name: Print RPA_TEST secret
+        run: echo RPA_TEST=%RPA_TEST%
+        shell: cmd
+        env:
+          RPA_TEST: ${{ secrets.RPA_TEST }}
       - name: Pull latest code
         run: |
           cd ${{ vars.dirTest }}

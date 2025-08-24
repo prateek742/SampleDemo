@@ -31,5 +31,5 @@ jobs:
       - name: Run script
         run: |
           cd ${{ vars.dirTest }}
-          C:\Users\freel\AppData\Local\Microsoft\WindowsApps\python.exe run.py
+          python run.py
         shell: cmd
